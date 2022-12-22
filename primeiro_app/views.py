@@ -27,6 +27,26 @@ def criar(request):
     return render(request, "primeiro_app/form.html", dados)
 
 
+def update(request, pk):
+    livro = Livro.objects.get(pk=pk)
+    form = LivroForm(request.POST or None, instance=livro)
+
+    if form.is_valid():
+        form.save()
+        return redirect("url_listagem")
+
+    dados = {"form": form, "livro": livro}
+    return render(request, "primeiro_app/form.html", dados)
+
+
+def delete(_, pk):
+    livro = Livro.objects.get(pk=pk)
+    livro.delete()
+    return redirect("url_listagem")
+
+
+
+
 
 
 

@@ -8,7 +8,9 @@
 <h1>Produtos:</h1>
     <ul>
         {% for livro in livros %}
-        <li>{{livro.titulo}} - {{livro.valor}}</li>
+        <li>
+            <a href="{% url 'url_update' livro.id %}">{{livro.titulo}} - {{livro.valor}</a>
+        </li>
         <ul>
             {% for autor in livro.autor.all %}
             <liv>{{autor.nome}}</liv>
